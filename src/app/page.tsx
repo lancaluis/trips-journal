@@ -1,5 +1,9 @@
 const Home = () => {
-  return <p>Trips Journal</p>
+  return (
+    <div>
+      <h1>Home</h1>
+    </div>
+  )
 }
 
 export default Home
