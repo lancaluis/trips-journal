@@ -1,9 +1,13 @@
+import LinkWrapper from '@/components/LinkWrapper'
 import DynamicMap from '@/components/Map'
+import { InfoIcon } from 'lucide-react'
 
 const Home = () => {
   return (
     <>
-      <h1>Home</h1>
+      <LinkWrapper href="/about">
+        <InfoIcon aria-label="About" />
+      </LinkWrapper>
       <DynamicMap />
     </>
   )

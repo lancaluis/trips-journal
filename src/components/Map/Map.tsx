@@ -1,8 +1,22 @@
-import { MapContainer, TileLayer, Marker, ZoomControl } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import { Icon } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
-export const Map = () => {
+type Place = {
+  id: number
+  name: string
+  slug: string
+  location: {
+    lat: number
+    long: number
+  }
+}
+
+export type MapProps = {
+  places?: Place[]
+}
+
+export const Map = ({ places }: MapProps) => {
   const mapMarkIcon = new Icon({
     iconUrl: 'map-marker.png',
     iconSize: [47, 55]
@@ -23,8 +37,19 @@ export const Map = () => {
         style={{ width: '100%', height: '100%' }}
       >
         <TileLayer url="https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}" />
-        <Marker icon={mapMarkIcon} position={[0, 0]} />
-        <ZoomControl position="bottomright" />
+
+        {places?.map(({ id, name, location }) => {
+          const { lat, long } = location
+
+          return (
+            <Marker
+              key={`place-${id}`}
+              icon={mapMarkIcon}
+              position={[lat, long]}
+              title={name}
+            />
+          )
+        })}
       </MapContainer>
     </div>
   )

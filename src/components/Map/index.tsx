@@ -8,7 +8,7 @@ const Map = dynamic(
 )
 
 const DynamicMap = () => {
-  return <Map />
+  return <Map places={[]} />
 }
 
 export default DynamicMap
