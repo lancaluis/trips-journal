@@ -7,8 +7,8 @@ type Place = {
   name: string
   slug: string
   location: {
-    lat: number
-    long: number
+    latitude: number
+    longitude: number
   }
 }
 
@@ -39,13 +39,13 @@ export const Map = ({ places }: MapProps) => {
         <TileLayer url="https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}" />
 
         {places?.map(({ id, name, location }) => {
-          const { lat, long } = location
+          const { latitude, longitude } = location
 
           return (
             <Marker
               key={`place-${id}`}
               icon={mapMarkIcon}
-              position={[lat, long]}
+              position={[latitude, longitude]}
               title={name}
             />
           )
